@@ -6,3 +6,7 @@ services:
     - "18888:8888"
     volumes:
     - "./scripts:/app"
+    #- "./webssh:/usr/local/lib/python3.8/site-packages/webssh.tmp"
+    - "./webssh:/usr/local/lib/python3.8/site-packages/webssh"
+    environment:
+      SSH_HOSTNAME: localhost
