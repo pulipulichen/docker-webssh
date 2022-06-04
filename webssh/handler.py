@@ -325,7 +325,7 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
         self.debug = self.settings.get('debug', False)
         self.font = self.settings.get('font', '')
         self.hostname = dict(a='a', b='b')
-        self.result = dict(id=None, status=None, encoding=None)
+        self.result = dict(id=None, status=None, encoding='')
 
     def write_error(self, status_code, **kwargs):
         if swallow_http_errors and self.request.method == 'POST':

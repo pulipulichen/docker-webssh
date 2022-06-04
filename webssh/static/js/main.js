@@ -224,14 +224,18 @@ jQuery(function($){
 
     if (!default_fonts) {
       default_fonts = term.getOption('fontFamily');
+      console.log('set default option', default_fonts)
     }
 
     if (custom_font_is_loaded()) {
-      var new_fonts =  custom_font.family + ', ' + default_fonts;
+      //var new_fonts =  custom_font.family + ', ' + default_fonts;
+      //var new_fonts = 'Anonymous Pro';
+      var new_fonts = default_fonts;
       term.setOption('fontFamily', new_fonts);
       term.font_family_updated = true;
       console.log('Using custom font family ' + new_fonts);
     }
+    //console.log('term getOption fontFamily', term.getOption('fontFamily'))
   }
 
 
@@ -379,7 +383,8 @@ jQuery(function($){
         termOptions.fontSize = fontsize;
       }
     }
-
+    termOptions.fontFamily = 'Anonymous Pro'
+    //console.log('termOptions', termOptions)
     var term = new window.Terminal(termOptions);
 
     term.fitAddon = new window.FitAddon.FitAddon();
@@ -526,6 +531,7 @@ jQuery(function($){
     });
 
     sock.onopen = function() {
+      console.log('term options', term.getOption('fontFamily'))
       term.open(terminal);
       toggle_fullscreen(term);
       update_font_family(term);
