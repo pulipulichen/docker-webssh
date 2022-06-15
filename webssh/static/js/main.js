@@ -538,6 +538,10 @@ jQuery(function($){
       term.focus();
       state = CONNECTED;
       title_element.text = url_opts_data.title || default_title;
+      // if (!url_opts_data.command) {
+      //   url_opts_data.command = environ.get('COMMAND')
+      // }
+
       if (url_opts_data.command) {
         setTimeout(function () {
           sock.send(JSON.stringify({'data': url_opts_data.command+'\r'}));

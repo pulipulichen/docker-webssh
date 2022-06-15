@@ -365,6 +365,8 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
 
     def get_hostname(self):
         value = self.get_value('hostname')
+        if environ.get('SSH_HOSTNAME') is not None:
+            value = environ.get('SSH_HOSTNAME')
         if not (is_valid_hostname(value) or is_valid_ip_address(value)):
             raise InvalidValueError('Invalid hostname: {}'.format(value))
         return value
@@ -391,6 +393,8 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
 
     def get_args(self):
         hostname = self.get_hostname()
+        if environ.get('SSH_HOSTNAME') is not None:
+            hostname = environ.get('SSH_HOSTNAME')
         port = self.get_port()
         username = self.get_value('username')
         password = self.get_argument('password', u'')
@@ -493,6 +497,7 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
         hostname = ""
         if environ.get('SSH_HOSTNAME') is not None:
             hostname = environ.get('SSH_HOSTNAME')
+        
         self.render('index.html', debug=self.debug, font=self.font, hostname=hostname)
 
     @tornado.gen.coroutine

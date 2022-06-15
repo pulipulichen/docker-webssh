@@ -1,1 +1,1 @@
-Websocket authentication failed.
+_xsrf’ argument missing from POST
